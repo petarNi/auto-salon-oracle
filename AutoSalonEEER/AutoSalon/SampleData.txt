@@ -1,0 +1,127 @@
+INSERT INTO Salon (Salon_id, Tip_salona, Naziv, Adresa, Telefon, Radno_vreme, Broj_zaposlenih, Proizvodjac) VALUES 
+(1, 'nova', 'Auto Lux', 'Bulevar 1', '0111234567', '08-20h', 15, 'Toyota');
+INSERT INTO Salon (Salon_id, Tip_salona, Naziv, Adresa, Telefon, Radno_vreme, Broj_zaposlenih, Proizvodjac) VALUES 
+(2, 'polovna', 'Polovni Hit', 'Ulica 2', '0117654321', '09-17h', 10, null);
+INSERT INTO Salon (Salon_id, Tip_salona, Naziv, Adresa, Telefon, Radno_vreme, Broj_zaposlenih, Proizvodjac) VALUES 
+(3, 'kombinovana', 'Mix Auto', 'Centar 3', '0119988776', '10-18h', 20, 'BMW');
+
+
+INSERT INTO Nova (Br_sasije, Model, Marka, God_proizvodnje, Boja, Broj_vrata, Kilometraza, Snaga_motora, Tip_goriva, Kup_id, Prom_id_novo, Sal_id_nova, Voznja_id_nova) VALUES 
+('1HGCM82633A004352', 'Yaris', 'Toyota', 2024, 'crvena', 5, 0, 90, 'benzin', 101, 1, 1, 1);
+INSERT INTO Nova (Br_sasije, Model, Marka, God_proizvodnje, Boja, Broj_vrata, Kilometraza, Snaga_motora, Tip_goriva, Kup_id, Prom_id_novo, Sal_id_nova, Voznja_id_nova) VALUES 
+('WVWZZZ1JZXW000001', 'Clio', 'Renault', 2024, 'plava', 5, 0, 85, 'benzin', 102, 2, 1, 2);
+INSERT INTO Nova (Br_sasije, Model, Marka, God_proizvodnje, Boja, Broj_vrata, Kilometraza, Snaga_motora, Tip_goriva, Kup_id, Prom_id_novo, Sal_id_nova, Voznja_id_nova) VALUES 
+('JH4KA8260MC012345', 'X5', 'BMW', 2024, 'bela', 5, 0, 250, 'dizel', 103, 3, 3, 3);
+
+
+
+INSERT INTO Polovna (Br_sasije, Model, Marka, God_proizvodnje, Boja, Broj_vrata, Kilometraza, Snaga_motora, Tip_goriva, Dat_poslednje_reg, Servisna_istorija, Br_preth_vlasnika, Kupo_id, Prom_id_polovno, Sal_id_polovna, Voznja_id_polovna) VALUES 
+('KMHCT4AE1FU123456', 'Focus', 'Ford', 2016, 'siva', 5, 95000, 120, 'dizel', '01-JUL-23', 'redovni servisi', 1, 101, 1, 2, 4);
+INSERT INTO Polovna (Br_sasije, Model, Marka, God_proizvodnje, Boja, Broj_vrata, Kilometraza, Snaga_motora, Tip_goriva, Dat_poslednje_reg, Servisna_istorija, Br_preth_vlasnika, Kupo_id, Prom_id_polovno, Sal_id_polovna, Voznja_id_polovna) VALUES 
+('5YJ3E1EA7KF123456', 'Golf', 'VW', 2015, 'crna', 5, 110000, 140, 'dizel', '15-MAY-25', 'manji kvarovi', 2, 102, 2, 2, 5);
+INSERT INTO Polovna (Br_sasije, Model, Marka, God_proizvodnje, Boja, Broj_vrata, Kilometraza, Snaga_motora, Tip_goriva, Dat_poslednje_reg, Servisna_istorija, Br_preth_vlasnika, Kupo_id, Prom_id_polovno, Sal_id_polovna, Voznja_id_polovna) VALUES 
+('ABHCG4ONKEU123456', 'Civic', 'Honda', 2014, 'bela', 5, 130000, 100, 'benzin', '20-DEC-24', 'pun servis', 3, 103, 3, 2, 6);
+
+
+
+INSERT INTO Osoba (JMBG, Licno_ime, Prezime) VALUES 
+('1111111111111', 'Marko', 'Markovic');
+INSERT INTO Osoba (JMBG, Licno_ime, Prezime) VALUES 
+('2222222222222', 'Jelena', 'Jovanovic');
+INSERT INTO Osoba (JMBG, Licno_ime, Prezime) VALUES 
+('3333333333333', 'Nikola', 'Nikolic');
+
+
+
+INSERT INTO Zaposleni (JMBG, Pozicija, Datum_zaposlenja, Datum_funkcija, Broj_prodatih, Ocena_kupaca, Salon_id_zap) VALUES
+('1111111111111', 'menadzer', '01-JAN-24', '15-FEB-24', NULL, NULL, 1);
+INSERT INTO Zaposleni (JMBG, Pozicija, Datum_zaposlenja, Datum_funkcija, Broj_prodatih, Ocena_kupaca, Salon_id_zap) VALUES
+('2222222222222', 'prodavac', '10-MAY-23', NULL, 35, 8, 2);
+INSERT INTO Zaposleni (JMBG, Pozicija, Datum_zaposlenja, Datum_funkcija, Broj_prodatih, Ocena_kupaca, Salon_id_zap) VALUES
+('3333333333333', 'serviser', '15-SEP-22', NULL, NULL, NULL, 3);
+
+
+
+INSERT INTO Fizicko (JMBG, Adresa, Kupac_id) VALUES
+('1111111111111', 'Adresa 1', 101);
+INSERT INTO Fizicko (JMBG, Adresa, Kupac_id) VALUES
+('2222222222222', 'Adresa 2', 102);
+INSERT INTO Fizicko (JMBG, Adresa, Kupac_id) VALUES
+('3333333333333', 'Adresa 3', 103);
+
+
+
+INSERT INTO Pravno (PIB, Sediste_firme, Kontakt_osoba, Naziv_firme, Kupac_id) VALUES
+('123456789', 'Sediste 1', 'Milan Peric', 'AutoFirma1', 101);
+INSERT INTO Pravno (PIB, Sediste_firme, Kontakt_osoba, Naziv_firme, Kupac_id) VALUES
+('987654321', 'Sediste 2', 'Jovana Lukić', 'AutoFirma2', 102);
+INSERT INTO Pravno (PIB, Sediste_firme, Kontakt_osoba, Naziv_firme, Kupac_id) VALUES
+('456789123', 'Sediste 3', 'Zoran Pavlovic', 'AutoFirma3', 103);
+
+
+
+INSERT INTO Kupac (Kupac_id) VALUES (101);
+INSERT INTO Kupac (Kupac_id) VALUES (102);
+INSERT INTO Kupac (Kupac_id) VALUES (103);
+
+
+
+INSERT INTO Test_voznja (Voznja_id, Ocena, Zakljucak, Datum_termina, Vreme_termina, JMBG_zap, Kupac_id) VALUES 
+(1, 5, 'Odlicna voznja', '01-JUN-25', '10:00', '1111111111111', 101);
+INSERT INTO Test_voznja (Voznja_id, Ocena, Zakljucak, Datum_termina, Vreme_termina, JMBG_zap, Kupac_id) VALUES 
+(2, 4, 'Dobra kontrola', '11-JUL-25', '11:00', '2222222222222', 102);
+INSERT INTO Test_voznja (Voznja_id, Ocena, Zakljucak, Datum_termina, Vreme_termina, JMBG_zap, Kupac_id) VALUES 
+(3, 5, 'Sjajan motor', '06-MAR-24', '12:00', '3333333333333', 103);
+INSERT INTO Test_voznja (Voznja_id, Ocena, Zakljucak, Datum_termina, Vreme_termina, JMBG_zap, Kupac_id) VALUES 
+(4, 4, 'Solidna vožnja','13-MAY-23' , '13:00', '1111111111111', 101);
+INSERT INTO Test_voznja (Voznja_id, Ocena, Zakljucak, Datum_termina, Vreme_termina, JMBG_zap, Kupac_id) VALUES 
+(5, 3, 'Potrebna dodatna provera','13-OCT-24', '14:30', '2222222222222', 102);
+INSERT INTO Test_voznja (Voznja_id, Ocena, Zakljucak, Datum_termina, Vreme_termina, JMBG_zap, Kupac_id) VALUES 
+(6, 5, 'Odličan odnos cena/kvalitet', '29-MAR-25', '15:00', '3333333333333', 103);
+
+
+
+INSERT INTO Promocija (Promocija_id, Uslovi, Naziv, Period_trajanja, Popust) VALUES
+(1, 'kredit', 'Promo Kredit', '01.01.2025 - 01.03.2025', 10);
+INSERT INTO Promocija (Promocija_id, Uslovi, Naziv, Period_trajanja, Popust) VALUES
+(2, 'leasing', 'Super Leasing', '15.02.2025 - 15.04.2025', 15);
+INSERT INTO Promocija (Promocija_id, Uslovi, Naziv, Period_trajanja, Popust) VALUES
+(3, 'zamena staro za novo', 'Zameni i Vozi', '01.03.2025 - 01.05.2025', 20);
+
+
+
+INSERT INTO Kupovina (Kupovina_id, Konacna_cena, Dodatna_oprema, Kupac_id, Prom_id, Placa_id) VALUES
+(1, 18000.00, 'navigacija', 101, 1, 1);
+INSERT INTO Kupovina (Kupovina_id, Konacna_cena, Dodatna_oprema, Kupac_id, Prom_id, Placa_id) VALUES
+(2, 12500.00, NULL, 102, 2, 2);
+INSERT INTO Kupovina (Kupovina_id, Konacna_cena, Dodatna_oprema, Kupac_id, Prom_id, Placa_id) VALUES
+(3, 24000.00, 'kožna sedišta', 103, 3, 3);
+
+
+INSERT INTO Nacin_placanja (Placanje_id, Tip) VALUES (1, 'gotovina');
+INSERT INTO Nacin_placanja (Placanje_id, Tip) VALUES (2, 'kredit');
+INSERT INTO Nacin_placanja (Placanje_id, Tip) VALUES (3, 'leasing');
+
+
+
+INSERT INTO Tel_osoba (Tel_osoba, JMBG_O) VALUES ('0611111111', '1111111111111');
+INSERT INTO Tel_osoba (Tel_osoba, JMBG_O) VALUES ('0622222222', '2222222222222');
+INSERT INTO Tel_osoba (Tel_osoba, JMBG_O) VALUES ('0633333333', '3333333333333');
+
+
+
+INSERT INTO Email_osoba (Email_osoba, JMBG_OS) VALUES ('marko@example.com', '1111111111111');
+INSERT INTO Email_osoba (Email_osoba, JMBG_OS) VALUES ('jelena@example.com', '2222222222222');
+INSERT INTO Email_osoba (Email_osoba, JMBG_OS) VALUES ('nikola@example.com', '3333333333333');
+
+
+INSERT INTO Tel_pravno (Tel_p_lica, PIB_P) VALUES ('011111111', '123456789');
+INSERT INTO Tel_pravno (Tel_p_lica, PIB_P) VALUES ('022222222', '987654321');
+INSERT INTO Tel_pravno (Tel_p_lica, PIB_P) VALUES ('033333333', '456789123');
+
+
+INSERT INTO Email_pravno (Email_p_lica, PIB_PR) VALUES ('firma1@auto.com', '123456789');
+INSERT INTO Email_pravno (Email_p_lica, PIB_PR) VALUES ('firma2@auto.com', '987654321');
+INSERT INTO Email_pravno (Email_p_lica, PIB_PR) VALUES ('firma3@auto.com', '456789123');
+
+

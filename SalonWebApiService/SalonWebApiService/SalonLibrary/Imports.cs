@@ -1,0 +1,11 @@
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Reflection;
+global using System.Threading.Tasks;
+global using System.Text;
+global using SalonLibrary.Entiteti;
+global using SalonLibrary.DTOs;
+global using NHibernate;
+global using static SalonLibrary.Extensions;
+global using System.Diagnostics.CodeAnalysis;

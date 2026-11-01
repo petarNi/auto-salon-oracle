@@ -1,0 +1,175 @@
+CREATE TABLE Salon (
+    Salon_id INTEGER  PRIMARY KEY,
+    Tip_salona VARCHAR(15) NOT NULL CHECK (Tip_salona IN('nova','polovna','kombinovana')),
+    Naziv VARCHAR(50) NOT NULL,
+    Adresa VARCHAR(100) NOT NULL,
+    Telefon VARCHAR(15) NOT NULL,
+    Radno_vreme VARCHAR(30) NOT NULL,
+    Broj_zaposlenih INTEGER CHECK (Broj_zaposlenih BETWEEN 0 AND 50),
+    Proizvodjac VARCHAR(30)
+);
+
+CREATE TABLE Nova (
+    Br_sasije VARCHAR(17) PRIMARY KEY,
+    Model VARCHAR(30) NOT NULL,
+    Marka VARCHAR(30) NOT NULL,
+    God_proizvodnje INT NOT NULL,
+    Boja VARCHAR(15) NOT NULL,
+    Broj_vrata INTEGER NOT NULL CHECK (Broj_vrata IN (3, 5)),
+    Kilometraza INTEGER NOT NULL CHECK (Kilometraza = 0),
+    Snaga_motora INTEGER NOT NULL CHECK (Snaga_motora BETWEEN 50 AND 1000),
+    Tip_goriva VARCHAR(30) NOT NULL CHECK (Tip_goriva IN ('benzin', 'dizel', 'električni')),
+    Kup_id INTEGER,
+    Prom_id_novo INTEGER,
+    Sal_id_nova INTEGER,
+    Voznja_id_nova INTEGER,
+    CONSTRAINT Voznja_FK_Nova FOREIGN KEY (Voznja_id_nova) REFERENCES Test_voznja(Voznja_id),
+    CONSTRAINT Kupac_FK_Nova FOREIGN KEY (Kup_id) REFERENCES Kupac(Kupac_id),
+    CONSTRAINT Promocija_FK_Nova FOREIGN KEY (Prom_id_novo) REFERENCES Promocija(Promocija_id),
+    CONSTRAINT Salon_FK_Nova FOREIGN KEY (Sal_id_nova) REFERENCES Salon(Salon_id)
+);
+
+CREATE TABLE Polovna (
+    Br_sasije VARCHAR(17) PRIMARY KEY,
+    Model VARCHAR(30) NOT NULL,
+    Marka VARCHAR(30) NOT NULL,
+    God_proizvodnje INT NOT NULL,
+    Boja VARCHAR(15) NOT NULL,
+    Broj_vrata INTEGER NOT NULL CHECK (Broj_vrata IN (3, 5)),
+    Kilometraza INTEGER NOT NULL CHECK (Kilometraza > 0),
+    Snaga_motora INTEGER NOT NULL CHECK (Snaga_motora BETWEEN 50 AND 1000),
+    Tip_goriva VARCHAR(30) NOT NULL CHECK (Tip_goriva IN ('benzin', 'dizel', 'električni')),
+    Dat_poslednje_reg DATE,
+    Servisna_istorija VARCHAR(100),
+    Br_preth_vlasnika INTEGER,
+    Kupo_id INTEGER,
+    Prom_id_polovno INTEGER,
+    Sal_id_polovna INTEGER,
+    Voznja_id_polovna INTEGER,
+    CONSTRAINT Voznja_FK_Polovna FOREIGN KEY (Voznja_id_polovna) REFERENCES Test_voznja(Voznja_id),
+    CONSTRAINT Kupac_FK_Polovna FOREIGN KEY (Kupo_id) REFERENCES Kupac(Kupac_id),
+    CONSTRAINT Promocija_FK_Polovna FOREIGN KEY (Prom_id_polovno) REFERENCES Promocija(Promocija_id),
+    CONSTRAINT Salon_FK_Polovna FOREIGN KEY (Sal_id_polovna) REFERENCES Salon(Salon_id)
+);
+
+
+CREATE TABLE Osoba (
+    JMBG CHAR(13) PRIMARY KEY,
+    Licno_ime VARCHAR(20) NOT NULL,
+    Prezime VARCHAR(20) NOT NULL
+);
+
+
+CREATE TABLE Zaposleni (
+    JMBG CHAR(13) PRIMARY KEY,
+    Pozicija VARCHAR(30) NOT NULL CHECK (Pozicija IN('menadzer','prodavac','serviser', 'finansijski savetnik')),
+    Datum_zaposlenja DATE NOT NULL,
+    Datum_funkcija DATE,
+    Broj_prodatih INTEGER,
+    Ocena_kupaca INTEGER,
+    Salon_id_zap INTEGER,
+    CONSTRAINT Osoba_FK_Zaposleni FOREIGN KEY (JMBG) REFERENCES Osoba(JMBG),
+    CONSTRAINT Salon_FK_Zaposleni FOREIGN KEY (Salon_id_zap) REFERENCES Salon(Salon_id)
+);
+
+
+CREATE TABLE Fizicko (
+    JMBG CHAR(13) PRIMARY KEY,
+    Adresa VARCHAR(100) NOT NULL,
+    Kupac_id INTEGER,
+    CONSTRAINT Osoba_FK_Fizicko FOREIGN KEY (JMBG) REFERENCES Osoba(JMBG),
+    CONSTRAINT Kupac_FK_Fizicko FOREIGN KEY (Kupac_id) REFERENCES Kupac(Kupac_id)
+);
+
+
+CREATE TABLE Pravno (
+    PIB CHAR(9) PRIMARY KEY,
+    Sediste_firme VARCHAR(100) NOT NULL,
+    Kontakt_osoba VARCHAR(50) NOT NULL,
+    Naziv_firme VARCHAR(100) NOT NULL,
+    Kupac_id INTEGER,
+    CONSTRAINT Kupac_FK_Pravno FOREIGN KEY (Kupac_id) REFERENCES Kupac(Kupac_id)
+);
+
+
+CREATE TABLE Kupac (
+    Kupac_id INTEGER PRIMARY KEY
+);
+
+
+CREATE TABLE Test_voznja (
+    Voznja_id INTEGER PRIMARY KEY,
+    Ocena INTEGER,
+    Zakljucak VARCHAR(100),
+    Datum_termina DATE,
+    Vreme_termina VARCHAR(5),
+    JMBG_zap CHAR(13),
+    Kupac_id INTEGER,
+    CONSTRAINT Zaposleni_FK_Test FOREIGN KEY (JMBG_zap) REFERENCES Zaposleni(JMBG),
+    CONSTRAINT Kupac_FK_Test FOREIGN KEY (Kupac_id) REFERENCES Kupac(Kupac_id)
+);
+
+
+CREATE TABLE Promocija (
+    Promocija_id INTEGER PRIMARY KEY,
+    Uslovi VARCHAR(50) CHECK (Uslovi IN('kredit','leasing','zamena staro za novo')),
+    Naziv VARCHAR(50) NOT NULL,
+    Period_trajanja VARCHAR(100) NOT NULL,
+    Popust INTEGER CHECK (Popust BETWEEN 0 AND 100)
+);
+
+
+
+CREATE TABLE Kupovina (
+    Kupovina_id INTEGER PRIMARY KEY,
+    Konacna_cena DECIMAL(10,2) NOT NULL,
+    Dodatna_oprema VARCHAR(50),
+    Kupac_id INTEGER,
+    Prom_id INTEGER,
+    Placa_id INTEGER,
+    CONSTRAINT Kupac_FK FOREIGN KEY (Kupac_id) REFERENCES Kupac(Kupac_id),
+    CONSTRAINT Promocija_FK FOREIGN KEY (Prom_id) REFERENCES Promocija(Promocija_id),
+    CONSTRAINT Nacin_placanja_FK FOREIGN KEY (Placa_id) REFERENCES Nacin_placanja(Placanje_id)
+);
+
+
+CREATE TABLE Nacin_placanja (
+    Placanje_id INTEGER PRIMARY KEY,
+    Tip VARCHAR(20) NOT NULL CHECK (Tip IN('gotovina','kredit','leasing'))
+);
+
+
+
+CREATE TABLE Tel_osoba (
+    Tel_osoba VARCHAR(15),
+    JMBG_O CHAR(13),
+    CONSTRAINT Tel_osoba_PK PRIMARY KEY (Tel_osoba, JMBG_O),
+    CONSTRAINT Osoba_FK_Tel FOREIGN KEY (JMBG_O) REFERENCES Osoba(JMBG)
+);
+
+
+CREATE TABLE Email_osoba (
+    Email_osoba VARCHAR(100),
+    JMBG_OS CHAR(13),
+    CONSTRAINT Email_osoba_PK PRIMARY KEY (Email_osoba, JMBG_OS),
+    CONSTRAINT Osoba_FK_Email FOREIGN KEY (JMBG_OS) REFERENCES Osoba(JMBG)
+);
+
+
+CREATE TABLE Tel_pravno (
+    Tel_p_lica VARCHAR(20),
+    PIB_P CHAR(9),
+    CONSTRAINT Tel_pravno_PK PRIMARY KEY (Tel_p_lica, PIB_P),
+    CONSTRAINT Pravno_FK_Tel FOREIGN KEY (PIB_P) REFERENCES Pravno(PIB)
+);
+
+
+
+CREATE TABLE Email_pravno (
+    Email_p_lica VARCHAR(100),
+    PIB_PR CHAR(9),
+    CONSTRAINT Email_pravno_PK PRIMARY KEY (Email_p_lica, PIB_PR),
+    CONSTRAINT Pravno_FK_Email FOREIGN KEY (PIB_PR) REFERENCES Pravno(PIB)
+);
+
+
